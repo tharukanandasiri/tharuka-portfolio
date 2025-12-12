@@ -63,11 +63,9 @@ const STATIC_PROFILE = {
     { title: "BSc. (Hons) Software Engineering", place: "Sri Lanka Technology Campus", year: "2022 - 2026", grade: "GPA: 3.00" },
     { title: "Diploma in Spoken English", place: "ICBT Kandy Campus", year: "2022" },
     { title: "G.C.E. Advanced Level", place: "St. Thomas' College, Matale", year: "2018 - 2020" },
-    { title: "G.C.E. Ordinary Level", place: "St. Thomas' College, Matale", year: "2012 - 2017" }
   ],
   experience: [
     { role: "Asst. Webmaster", company: "IEEE Student Branch of SLTC", year: "2024 - 2025" },
-    { role: "Content Team Head", company: "Sri Lanka Arduino Challenge 2025", year: "2025" }
   ]
 };
 
@@ -87,12 +85,12 @@ const SKILLS = [
 ];
 
 const STATIC_VOLUNTEERING = [
-  { role: "Content Creation Team Head", event: "Sri Lanka Arduino Challenge 2025", org: "IEEE SLTC" },
-  { role: "Design Team Deputy Head", event: "IEEE GISLA 2024", org: "IEEE SLTC" },
-  { role: "Design Team Member", event: "IEEE SPARK VI", org: "IEEE SLTC" },
-  { role: "Content Team Deputy Head", event: "Codemania v4.0", org: "IEEE CS SLTC" },
+  { role: "Content Creation Team Head", event: "Sri Lanka Arduino Challenge 2025", org: "SLTC IEEE" },
+  { role: "Design Team Deputy Head", event: "IEEE GISLA 2024", org: "SLTC IEEE" },
+  { role: "Design Team Member", event: "IEEE SPARK VI", org: "SLTC IEEE" },
+  { role: "Content Team Deputy Head", event: "Codemania v4.0", org: "SLTC IEEE CS" },
   { role: "Content Team Member", event: "Career Fest 2023", org: "SLTC" },
-  { role: "Design Team Member", event: "IdeaniX Generation 01", org: "IEEE" }
+  { role: "Design Team Member", event: "IdeaniX Generation 01", org: "SLTC IEEE CS" }
 ];
 
 const STATIC_CERTIFICATIONS = [
@@ -107,35 +105,35 @@ const STATIC_CERTIFICATIONS = [
 const STATIC_PROJECTS = [
   {
     id: 1,
-    title: "AI-Driven NPC Engine",
+    title: "AI-Driven NPCs Through Prompt Engineering",
     category: "AI / Game Dev",
     tech: ["TypeScript", "React", "Gemini API"],
     desc: "A thesis project revolutionizing gaming experiences using advanced prompt engineering for dynamic, non-scripted NPC behaviors.",
-    link: "#"
+    link: "https://github.com/tharukanandasiri/dnd-be"
   },
   {
     id: 2,
-    title: "Career Pathfinder AI",
+    title: "AI-Powered Career Guidance System",
     category: "Machine Learning",
     tech: ["Next.js", "Python", "Scikit-learn"],
     desc: "Intelligent system identifying suitable tech roles based on personality traits and skills using predictive modeling.",
-    link: "#"
+    link: "https://github.com/tharukanandasiri/AI-career-guidance-system"
   },
   {
     id: 3,
-    title: "Gesture Fan Control",
+    title: "Smart Fan Control Using Image Processing",
     category: "IoT / Vision",
     tech: ["OpenCV", "Python", "Arduino"],
     desc: "Touchless hardware interface interpreting hand gestures for real-time environmental control.",
-    link: "#"
+    link: "https://github.com/tharukanandasiri/smart_fan_control"
   },
   {
     id: 4,
-    title: "Luxe Hotel Reserve",
+    title: "Hotel Reservation System",
     category: "Full Stack",
-    tech: ["PHP", "SQL", "Modern UI"],
+    tech: ["PHP", "SQL", "JavaScript"],
     desc: "High-performance reservation system with complex validation logic and seamless server-side processing.",
-    link: "#"
+    link: "https://github.com/tharukanandasiri/Hotel_reservation_system"
   }
 ];
 
@@ -1593,6 +1591,21 @@ const About = () => {
                       </div>
                     ))}
                   </RevealOnScroll>
+
+                  <RevealOnScroll delay={0.4}>
+                    <h3 className="text-xl font-bold text-white border-b border-slate-800 pb-2 mb-4 flex items-center gap-2">
+                       <Award size={20} className="text-blue-500"/> Experience
+                    </h3>
+                    {STATIC_PROFILE.experience.map((exp, idx) => (
+                      <div key={idx} className="mb-4 last:mb-0 pl-4 border-l-2 border-slate-800 hover:border-blue-500 transition-colors">
+                         <div className="flex justify-between items-baseline">
+                            <h4 className="text-white font-medium">{exp.role}</h4>
+                            <span className="text-slate-500 text-sm">{exp.year}</span>
+                         </div>
+                         <p className="text-slate-400 text-sm">{exp.company}</p>
+                      </div>
+                    ))}
+                  </RevealOnScroll>
                </div>
             </div>
          </div>
@@ -1613,7 +1626,7 @@ const Projects = ({ dbProjects }) => {
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Selected Works</h2>
               <p className="text-slate-500 max-w-md">A curated collection of projects pushing the boundaries of web and AI technology.</p>
             </div>
-            <button className="hidden md:flex items-center gap-2 text-white border-b border-white pb-1 hover:text-blue-400 hover:border-blue-400 transition-colors">
+            <button onClick={() => window.open('https://github.com/tharukanandasiri', '_blank')} className="hidden md:flex items-center gap-2 text-white border-b border-white pb-1 hover:text-blue-400 hover:border-blue-400 transition-colors">
               View GitHub <ExternalLink size={16} />
             </button>
           </div>
