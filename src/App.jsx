@@ -29,14 +29,14 @@ import {
   getFirestore, collection, addDoc, getDocs, deleteDoc, doc, query, orderBy 
 } from "firebase/firestore";
 
-// REPLACE WITH YOUR CONFIG
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyDmDBIWg3uGDT8M78NdpVm4jo6AQbVgnvA",
+  authDomain: "tharuka-portfolio-6d102.firebaseapp.com",
+  projectId: "tharuka-portfolio-6d102",
+  storageBucket: "tharuka-portfolio-6d102.firebasestorage.app",
+  messagingSenderId: "369678320202",
+  appId: "1:369678320202:web:93368158ce7cc02f705cb3",
+  measurementId: "G-H3CES3F979"
 };
 
 let auth, db;
@@ -1404,7 +1404,7 @@ const Navbar = ({ setView, user }) => {
 
 const Hero = () => {
   return (
-    <section className="min-h-screen w-full bg-black flex flex-col justify-center pt-20 pb-20 overflow-hidden relative">
+    <section className="min-h-screen w-full bg-black flex flex-col justify-center pt-32 pb-20 overflow-hidden relative">
       <div className="w-full absolute inset-0 h-screen">
         <SparklesCore
           id="tsparticlesfullpage"
@@ -1465,7 +1465,7 @@ const Hero = () => {
                 GitHub
               </a>
               <a 
-                href="#"
+                href="/tharukanandasiri_cv.pdf"
                 download
                 className="px-8 py-3 bg-slate-900 text-white border border-slate-800 rounded-full font-medium hover:bg-emerald-600/20 hover:border-emerald-500/50 transition-all flex items-center gap-2"
               >
@@ -1486,15 +1486,15 @@ const Hero = () => {
               <span className="text-xs text-slate-500 uppercase tracking-widest mt-1">Years Coding</span>
            </div>
            <div className="flex flex-col items-center">
-              <span className="text-3xl font-bold text-white">15+</span>
+              <span className="text-3xl font-bold text-white">10+</span>
               <span className="text-xs text-slate-500 uppercase tracking-widest mt-1">Projects</span>
            </div>
            <div className="flex flex-col items-center">
-              <span className="text-3xl font-bold text-white">200+</span>
+              <span className="text-3xl font-bold text-white">100+</span>
               <span className="text-xs text-slate-500 uppercase tracking-widest mt-1">Commits</span>
            </div>
            <div className="flex flex-col items-center">
-              <span className="text-3xl font-bold text-white">5</span>
+              <span className="text-3xl font-bold text-white">3</span>
               <span className="text-xs text-slate-500 uppercase tracking-widest mt-1">Hackathons</span>
            </div>
         </motion.div>
@@ -1557,7 +1557,7 @@ const About = () => {
                 <div className="absolute -inset-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl opacity-30 blur-lg group-hover:opacity-50 transition duration-500"></div>
                 <div className="relative aspect-[3/4] rounded-xl overflow-hidden border border-slate-800 bg-slate-900">
                   <img 
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=800&q=80" 
+                    src="/profile.png" 
                     alt="Tharuka Nandasiri"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 grayscale hover:grayscale-0"
                   />
