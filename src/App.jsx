@@ -1217,7 +1217,7 @@ const MagneticButton = ({ children, className = "" }) => {
     const { height, width, left, top } = ref.current.getBoundingClientRect();
     const centerX = left + width / 2;
     const centerY = top + height / 2;
-    x.set((clientX - centerX) * 0.3); // Adjust strength
+    x.set((clientX - centerX) * 0.3);
     y.set((clientY - centerY) * 0.3);
   };
 
