@@ -1429,7 +1429,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.8 }}
-          className="text-xl md:text-2xl text-emerald-400 font-mono mb-8 relative z-20"
+          className="text-xl md:text-2xl text-emerald-400 font-mono mb-8 relative z-20 text-center"
         >
           Software Engineering Undergraduate
         </motion.div>
@@ -1446,7 +1446,7 @@ const Hero = () => {
              {STATIC_PROFILE.tagline}
         </p>
 
-        <div className="flex gap-4 mt-8 relative z-20">
+        <div className="flex flex-wrap justify-center gap-4 mt-8 relative z-20">
              <button 
                 onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
                 className="px-8 py-3 bg-white text-black rounded-full font-bold hover:bg-slate-200 transition-all flex items-center gap-2 group"
@@ -1782,13 +1782,13 @@ const Articles = ({ dbArticles }) => {
 
 const Contact = () => {
   return (
-    <section id="contact" className="min-h-screen bg-slate-950 flex items-center relative overflow-hidden py-24">
+    <section id="contact" className="bg-slate-950 relative overflow-hidden py-16 lg:py-24 flex flex-col lg:min-h-screen lg:items-center">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] from-blue-900/20 via-slate-950 to-slate-950"></div>
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[100px] pointer-events-none"></div>
       
       <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
-        <div className="grid lg:grid-cols-2 gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           
           {/* Left: Magnetic Interactions */}
           <div>
