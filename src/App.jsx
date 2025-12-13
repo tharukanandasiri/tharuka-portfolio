@@ -1844,14 +1844,15 @@ const Contact = () => {
               {/* Glow Effect behind form */}
               <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl blur opacity-20"></div>
               
-              <form className="relative bg-slate-900/80 backdrop-blur-xl p-8 md:p-10 rounded-3xl border border-white/10 shadow-2xl">
+              <form action="https://formspree.io/f/mpwvbzoz" method="POST" className="relative bg-slate-900/80 backdrop-blur-xl p-8 md:p-10 rounded-3xl border border-white/10 shadow-2xl">
                 <h3 className="text-2xl font-bold text-white mb-6">Send a Message</h3>
                 
                 <div className="space-y-6">
                   <div className="group">
                     <label className="block text-sm text-slate-400 mb-2 group-focus-within:text-blue-400 transition-colors">Your Name</label>
                     <input 
-                      type="text" 
+                      type="text"
+                      name="name" 
                       className="w-full bg-black/50 border border-slate-700 rounded-xl p-4 text-white focus:border-blue-500 outline-none transition-all placeholder:text-slate-700"
                       placeholder="John Doe"
                     />
@@ -1861,6 +1862,7 @@ const Contact = () => {
                     <label className="block text-sm text-slate-400 mb-2 group-focus-within:text-blue-400 transition-colors">Email Address</label>
                     <input 
                       type="email" 
+                      name="_replyto"
                       className="w-full bg-black/50 border border-slate-700 rounded-xl p-4 text-white focus:border-blue-500 outline-none transition-all placeholder:text-slate-700"
                       placeholder="john@example.com"
                     />
@@ -1869,6 +1871,7 @@ const Contact = () => {
                   <div className="group">
                     <label className="block text-sm text-slate-400 mb-2 group-focus-within:text-blue-400 transition-colors">Message</label>
                     <textarea 
+                      name="message"
                       className="w-full bg-black/50 border border-slate-700 rounded-xl p-4 text-white focus:border-blue-500 outline-none transition-all h-32 placeholder:text-slate-700 resize-none"
                       placeholder="Tell me about your project..."
                     />
