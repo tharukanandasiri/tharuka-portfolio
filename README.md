@@ -1,16 +1,30 @@
-# React + Vite
+# 🚀 Tharuka Nandasiri's Developer Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A sleek, highly customizable, and interactive personal portfolio template built with modern web technologies. This project is designed to showcase projects, skills, and experience with a focus on performance, aesthetics, and a powerful content management system powered by Firebase Firestore.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Modern UI/UX:** Dark-themed design built with Tailwind CSS for a professional and engaging aesthetic.
+- **Interactive Design:** Utilizes Framer Motion for smooth scroll animations, interactive effects (like the magnetic buttons), and background sparkles.
+- **Single-Page Layout:** Comprehensive sections including Hero, Skills, About Me, Projects, Experience, Certifications, Articles, and Contact.
+- **Firebase Integration (Headless CMS):** Dynamic content management system using Firebase Firestore for updating Projects and Articles without touching the code.
+- **Secure Admin Panel:** Login and CRUD (Create, Read, Update, Delete) functionality for Projects and Articles managed by Firebase Authentication.
+- **Static Contact Form:** Integrated with Formspree for reliable email forwarding without needing a custom server.
+- **Fully Responsive:** Designed to look great on desktop, tablet, and mobile devices.
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**Frontend:**
 
-## Expanding the ESLint configuration
+- **React:** Frontend library for building the user interface.
+- **Vite:** Next-generation frontend tooling for blazing-fast development.
+- **Tailwind CSS (v3):** Utility-first CSS framework for rapid styling.
+- **Framer Motion:** Library for declarative animations and gesture handling.
+- **Lucide React:** Icon library used throughout the site.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+**Backend & Data:**
+
+- **Firebase:** Google's platform used for:
+  - **Firestore:** Real-time, NoSQL database for Projects and Articles data.
+  - **Authentication:** User login for the Admin Panel.
+- **Formspree:** Third-party service for handling contact form submissions.
