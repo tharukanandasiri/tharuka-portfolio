@@ -65,8 +65,25 @@ const STATIC_PROFILE = {
     { title: "G.C.E. Advanced Level", place: "St. Thomas' College, Matale", year: "2018 - 2020" },
   ],
   experience: [
-    { role: "Flutter Developer - Intern", company: "ARTecX Solutions", year: "Dec 2025 - Jun 2026" },
-    { role: "Asst. Webmaster", company: "IEEE Student Branch of SLTC", year: "2024 - 2025" },
+    {
+      role: "Flutter Developer - Intern",
+      company: "ARTecX Solutions",
+      year: "Dec 2025 - Jun 2026",
+      details: [
+        "Built responsive UIs for mobile apps and web dashboards using Flutter.",
+        "Integrated RESTful APIs and architected server-side backends using Node.js.",
+        "Promoted to Mobile Team Lead, managing developers and delivering full-stack projects."
+      ]
+    },
+    {
+      role: "Asst. Webmaster",
+      company: "IEEE Student Branch of SLTC",
+      year: "Jul 2024 - Jul 2025",
+      details: [
+        "Managed social media platforms.",
+        "Contributed to developing the official website of the SLTC IEEE."
+      ]
+    },
   ]
 };
 
@@ -1576,42 +1593,108 @@ const About = () => {
                  </p>
                </RevealOnScroll>
 
-               <div className="space-y-8">
-                  <RevealOnScroll delay={0.3}>
-                    <h3 className="text-xl font-bold text-white border-b border-slate-800 pb-2 mb-4 flex items-center gap-2">
-                       <BookOpen size={20} className="text-blue-500"/> Education
-                    </h3>
-                    {STATIC_PROFILE.education.map((edu, idx) => (
-                      <div key={idx} className="mb-4 last:mb-0 pl-4 border-l-2 border-slate-800 hover:border-blue-500 transition-colors">
-                         <div className="flex justify-between items-baseline">
-                            <h4 className="text-white font-medium">{edu.title}</h4>
-                            <span className="text-slate-500 text-sm">{edu.year}</span>
-                         </div>
-                         <p className="text-slate-400 text-sm">{edu.place}</p>
-                         {edu.grade && <p className="text-emerald-400 text-xs mt-1">{edu.grade}</p>}
-                      </div>
-                    ))}
-                  </RevealOnScroll>
+              <div className="space-y-8">
+                <ExperienceList />
 
-                  <RevealOnScroll delay={0.4}>
-                    <h3 className="text-xl font-bold text-white border-b border-slate-800 pb-2 mb-4 flex items-center gap-2">
-                       <Award size={20} className="text-blue-500"/> Experience
-                    </h3>
-                    {STATIC_PROFILE.experience.map((exp, idx) => (
-                      <div key={idx} className="mb-4 last:mb-0 pl-4 border-l-2 border-slate-800 hover:border-blue-500 transition-colors">
-                         <div className="flex justify-between items-baseline">
-                            <h4 className="text-white font-medium">{exp.role}</h4>
-                            <span className="text-slate-500 text-sm">{exp.year}</span>
-                         </div>
-                         <p className="text-slate-400 text-sm">{exp.company}</p>
-                      </div>
-                    ))}
-                  </RevealOnScroll>
-               </div>
+                <RevealOnScroll delay={0.6}>
+                  <h3 className="text-xl font-bold text-white border-b border-slate-800 pb-2 mb-4 flex items-center gap-2">
+                    <BookOpen size={20} className="text-blue-500"/> Education
+                  </h3>
+                  {STATIC_PROFILE.education.map((edu, idx) => (
+                   <div key={idx} className="mb-4 last:mb-0 pl-4 border-l-2 border-slate-800 hover:border-blue-500 transition-colors">
+                     <div className="flex justify-between items-baseline">
+                       <h4 className="text-white font-medium">{edu.title}</h4>
+                       <span className="text-slate-500 text-sm">{edu.year}</span>
+                     </div>
+                     <p className="text-slate-400 text-sm">{edu.place}</p>
+                     {edu.grade && <p className="text-emerald-400 text-xs mt-1">{edu.grade}</p>}
+                   </div>
+                  ))}
+                </RevealOnScroll>
+              </div>
             </div>
          </div>
        </div>
     </section>
+  );
+};
+
+const ExperienceList = () => {
+  const [expanded, setExpanded] = useState(null);
+  const itemRefs = useRef([]);
+  const headerRef = useRef(null);
+  const headerInView = useInView(headerRef, { once: true, amount: 0.3 });
+
+  useEffect(() => {
+    if (expanded != null) {
+      const el = itemRefs.current[expanded];
+      if (el && typeof el.scrollIntoView === 'function') {
+        el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+  }, [expanded]);
+
+  return (
+    <RevealOnScroll delay={0.3}>
+      <div>
+        <motion.h3
+          ref={headerRef}
+          initial={{ opacity: 0, y: 8 }}
+          animate={headerInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.45 }}
+          className="text-xl font-bold text-white border-b border-slate-800 pb-2 mb-4 flex items-center gap-2"
+        >
+          <Award size={20} className="text-blue-500"/> Experience
+        </motion.h3>
+
+        {STATIC_PROFILE.experience.map((exp, idx) => {
+          const isOpen = expanded === idx;
+          return (
+            <div
+              key={idx}
+              ref={(el) => (itemRefs.current[idx] = el)}
+              className="mb-4 last:mb-0 pl-4 border-l-2 border-slate-800 hover:border-blue-500 transition-colors"
+            >
+              <button
+                onClick={() => setExpanded(isOpen ? null : idx)}
+                className="w-full text-left flex justify-between items-baseline"
+                aria-expanded={isOpen}
+              >
+                <div>
+                  <h4 className="text-white font-medium">{exp.role}</h4>
+                  <p className="text-slate-400 text-sm">{exp.company}</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-slate-500 text-sm">{exp.year}</span>
+                  <motion.span animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.25 }} className="transform">
+                    <ChevronDown size={18} className="text-slate-400" />
+                  </motion.span>
+                </div>
+              </button>
+
+              <AnimatePresence initial={false}>
+              {isOpen && (
+                <motion.div
+                  key="details"
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.28 }}
+                  style={{ overflow: 'hidden' }}
+                >
+                  <ul className="mt-3 pl-6 list-disc space-y-1">
+                    {exp.details?.map((d, i) => (
+                      <li key={i} className="text-slate-400 text-sm">{d}</li>
+                    ))}
+                  </ul>
+                </motion.div>
+              )}
+              </AnimatePresence>
+            </div>
+          );
+        })}
+      </div>
+    </RevealOnScroll>
   );
 };
 
