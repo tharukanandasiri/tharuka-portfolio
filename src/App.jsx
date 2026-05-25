@@ -103,12 +103,14 @@ const SKILLS = [
 ];
 
 const STATIC_VOLUNTEERING = [
-  { role: "Content Creation Team Head", event: "Sri Lanka Arduino Challenge 2025", org: "SLTC IEEE" },
-  { role: "Design Team Deputy Head", event: "IEEE GISLA 2024", org: "SLTC IEEE" },
-  { role: "Design Team Member", event: "IEEE SPARK VI", org: "SLTC IEEE" },
-  { role: "Content Team Deputy Head", event: "Codemania v4.0", org: "SLTC IEEE CS" },
-  { role: "Content Team Member", event: "Career Fest 2023", org: "SLTC" },
-  { role: "Design Team Member", event: "IdeaniX Generation 01", org: "SLTC IEEE CS" }
+  { role: "Content & Caption Team Head", event: "ZER0 DAY", org: "SLTC ISACA Student Group", link: "https://zero-day.lk/" },
+  { role: "Content Creation Team Head", event: "Sri Lanka Arduino Challenge 2025", org: "SLTC IEEE", link: "https://www.ieee.lk/events/499789" },
+  { role: "Design Team Deputy Head", event: "IEEE GISLA 2024", org: "SLTC IEEE", link: "https://gisla2024.vercel.app/" },
+  { role: "Design Team Member", event: "IEEE SPARK VI", org: "SLTC IEEE", link: "https://www.ieee.lk/events/483573" },
+  { role: "Content Team Deputy Head", event: "Codemania v4.0", org: "SLTC IEEE CS", link: "https://codemania-v4.vercel.app/" },
+  { role: "Content Team Member", event: "Career Fest 2023", org: "SLTC", link: "https://www.ieee.lk/events/392915" },
+  { role: "Design Team Member", event: "IdeaniX Generation 01", org: "SLTC IEEE CS", link: "https://ideanix.vercel.app/" },
+  { role: "Content Team Deputy Head", event: "Codemania v3.0", org: "SLTC IEEE CS", link: "https://codemaniav-3.github.io/" }
 ];
 
 const STATIC_CERTIFICATIONS = [
@@ -1769,20 +1771,51 @@ const Volunteering = () => {
         </RevealOnScroll>
 
         <div className="grid md:grid-cols-2 gap-6">
-          {STATIC_VOLUNTEERING.map((vol, idx) => (
-            <RevealOnScroll key={idx} delay={idx * 0.1}>
-              <div className="bg-slate-900/50 p-6 rounded-xl border border-slate-800 hover:border-red-500/50 transition-all hover:bg-slate-900 group">
-                <div className="flex justify-between items-start mb-2">
-                   <h3 className="font-bold text-white group-hover:text-red-400 transition-colors">{vol.role}</h3>
-                   <span className="text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded">{vol.org}</span>
-                </div>
-                <p className="text-slate-400 text-sm">{vol.event}</p>
-              </div>
-            </RevealOnScroll>
-          ))}
+          <VolunteeringList />
         </div>
       </div>
     </section>
+  );
+};
+
+const VolunteeringList = () => {
+  return (
+    <>
+      {STATIC_VOLUNTEERING.map((vol, idx) => (
+        <RevealOnScroll key={idx} delay={idx * 0.07}>
+          {vol.link ? (
+            <a
+              href={vol.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block bg-slate-900/50 p-6 rounded-xl border border-slate-800 hover:border-red-500/50 transition-all hover:bg-slate-900 group"
+            >
+              <div className="flex justify-between items-start mb-2">
+                <div>
+                  <h3 className="font-bold text-white group-hover:text-red-400 transition-colors">{vol.role}</h3>
+                  <p className="text-slate-400 text-sm mt-1">{vol.event}</p>
+                </div>
+                <div className="flex flex-col items-end">
+                  <span className="text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded">{vol.org}</span>
+                </div>
+              </div>
+            </a>
+          ) : (
+            <div className="bg-slate-900/50 p-6 rounded-xl border border-slate-800 transition-all">
+              <div className="flex justify-between items-start mb-2">
+                <div>
+                  <h3 className="font-bold text-white">{vol.role}</h3>
+                  <p className="text-slate-400 text-sm mt-1">{vol.event}</p>
+                </div>
+                <div>
+                  <span className="text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded">{vol.org}</span>
+                </div>
+              </div>
+            </div>
+          )}
+        </RevealOnScroll>
+      ))}
+    </>
   );
 };
 
