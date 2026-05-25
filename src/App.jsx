@@ -65,6 +65,7 @@ const STATIC_PROFILE = {
     { title: "G.C.E. Advanced Level", place: "St. Thomas' College, Matale", year: "2018 - 2020" },
   ],
   experience: [
+    { role: "Flutter Developer - Intern", company: "ARTecX Solutions", year: "Dec 2025 - Jun 2026" },
     { role: "Asst. Webmaster", company: "IEEE Student Branch of SLTC", year: "2024 - 2025" },
   ]
 };
