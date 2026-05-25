@@ -20,6 +20,8 @@ import {
   Twitter, Globe, Copy, MousePointer2, Download
 } from 'lucide-react';
 
+// Project images are served from `public/assets/project_images/` (public folder)
+
 // --- FIREBASE IMPORTS ---
 import { initializeApp } from "firebase/app";
 import { 
@@ -103,7 +105,7 @@ const SKILLS = [
 ];
 
 const STATIC_VOLUNTEERING = [
-  { role: "Content & Caption Team Head", event: "ZER0 DAY", org: "SLTC ISACA Student Group", link: "https://zero-day.lk/" },
+  { role: "Content & Caption Team Head", event: "ZER0 DAY", org: "SLTC ISACA", link: "https://zero-day.lk/" },
   { role: "Content Creation Team Head", event: "Sri Lanka Arduino Challenge 2025", org: "SLTC IEEE", link: "https://www.ieee.lk/events/499789" },
   { role: "Design Team Deputy Head", event: "IEEE GISLA 2024", org: "SLTC IEEE", link: "https://gisla2024.vercel.app/" },
   { role: "Design Team Member", event: "IEEE SPARK VI", org: "SLTC IEEE", link: "https://www.ieee.lk/events/483573" },
@@ -129,7 +131,59 @@ const STATIC_PROJECTS = [
     category: "AI / Game Dev",
     tech: ["TypeScript", "React", "Gemini API"],
     desc: "A thesis project revolutionizing gaming experiences using advanced prompt engineering for dynamic, non-scripted NPC behaviors.",
-    link: "https://github.com/tharukanandasiri/dnd-be"
+    image: "/assets/project_images/ai-driven-npcs.png",
+    link: "https://github.com/tharukanandasiri/dnd-be",
+    details: `Enhancing AI-Driven Non-player Character (NPC) Interactions Through Advanced Prompt Engineering
+
+Nov 2024 – Nov 2025
+
+Associated with Sri Lanka Technological Campus
+
+Final Year Project – BSc. (Hons) in Software Engineering
+
+This project developed the Character Brain, a prototype system that gives Non-Player Characters (NPCs) persistent, role-aware memory and more natural, contextually consistent dialogue. The goal was to reduce persona drift and hallucination in interactive scenarios by combining deterministic memory consolidation with programmatic prompt assembly.
+
+Tech stack & architecture: Hono.js backend with a provider-agnostic LLM layer (prototype used Google Gemini), PostgreSQL + Prisma for relational memory, and a React testbed for interaction evaluation. The system implements a Structured-Data-Assembly memory model to store sentiment, facts and event summaries, and a Prompt Optimizer that injects persona, game rules and consolidated memories into every model call while enforcing structured (JSON) outputs.
+
+My contributions & results: As Team Lead / Prompt Engineer / QA / Project Manager I led the team, managed timelines and tasks in Notion, and maintained the logbook and technical documentation. I designed and refined the Prompt Optimizer and prompt templates, defined QA test suites (persona consistency, JSON schema validation) and ran usability testing. A mixed-methods user study (N=50) showed a 76% memory-retention success rate and a mean realism score of 4.26/5, with model latency identified as the primary area for future optimization.`
+  },
+    {
+    id: 5,
+    title: "AR Solar System",
+    category: "AR / Immersive Tech",
+    tech: ["Unity 6", "Vuforia", "C#"],
+    desc: "An interactive marker-based AR mobile app that visualizes the solar system in 3D for immersive learning.",
+    image: "/assets/project_images/ar-solar-system.png",
+    link: "https://github.com/tharukanandasiri/AR_SolarSystem",
+    details: `AR Solar System
+
+  Aug 2025 – Oct 2025
+
+  Associated with Sri Lanka Technological Campus
+
+  AR Solar System is an educational augmented reality mobile application developed as a final project for CCS4361 – Immersive Technology Development. The project addresses the limitations of traditional 2D learning methods by providing an interactive 3D visualization of the solar system, helping students better understand planetary positions, sizes, rotations, and orbits.
+
+  Using marker-based AR, users can point their mobile camera at a predefined image to view a realistic 3D solar system overlaid in the real world. The application allows real-time interaction, including toggling planetary orbits and observing individual planet rotations, making learning more engaging and intuitive.
+
+  Tech Stack & Tools:
+  - Unity 6 (Game Engine)
+  - Vuforia Engine (Marker-based AR)
+  - C# (Scripting)
+  - Android SDK (Mobile Deployment)
+  - Universal Render Pipeline (URP)
+
+  Key Features:
+  - Marker-based AR solar system visualization
+  - Interactive 3D planet models in real-world space
+  - Planetary self-rotation and orbit simulation
+  - User-controlled orbit toggle via UI
+  - Optimized low-poly models for smooth mobile performance
+
+  Outcome & Learning:
+  - Successfully built and deployed a functional Android AR application
+  - Gained hands-on experience in AR development, Unity scene architecture, and C# scripting
+  - Solved real-world issues such as rendering pipeline errors, script compilation bugs, and Android build configuration
+  - Demonstrated practical problem-solving and debugging skills in immersive technology development.`
   },
   {
     id: 2,
@@ -137,7 +191,23 @@ const STATIC_PROJECTS = [
     category: "Machine Learning",
     tech: ["Next.js", "Python", "Scikit-learn"],
     desc: "Intelligent system identifying suitable tech roles based on personality traits and skills using predictive modeling.",
-    link: "https://github.com/tharukanandasiri/AI-career-guidance-system"
+    image: "/assets/project_images/ai-career-guidance-system.png",
+    link: "https://github.com/tharukanandasiri/AI-career-guidance-system",
+    details: `AI-Powered Career Guidance System
+
+  Jul 2025 – Aug 2025
+
+  Associated with Sri Lanka Technological Campus
+
+  This system is designed to help users discover suitable tech roles by analyzing their unique personality traits and skills. It utilizes a machine learning model to predict a fitting career path, which users can access through a modern and interactive web interface.
+
+  Key Features:
+
+  AI-Powered Career Prediction: The core of our system is a machine learning model, built with scikit-learn and Pandas, that recommends tech roles based on user input.
+
+  Interactive Frontend: We developed a responsive user interface using Next.js, TypeScript, and Tailwind CSS to ensure a seamless user experience.
+
+  Scalable Backend: The prediction model is served through a scalable Python-based backend built with Flask/FastAPI.`
   },
   {
     id: 3,
@@ -145,7 +215,24 @@ const STATIC_PROJECTS = [
     category: "IoT / Vision",
     tech: ["OpenCV", "Python", "Arduino"],
     desc: "Touchless hardware interface interpreting hand gestures for real-time environmental control.",
-    link: "https://github.com/tharukanandasiri/smart_fan_control"
+    image: "/assets/project_images/smart-fan-control.jpeg",
+    link: "https://github.com/tharukanandasiri/smart_fan_control",
+    details: `Smart Fan Control Using Image Processing
+
+  Jul 2024 – Oct 2024
+
+  Associated with Sri Lanka Technological Campus
+
+  A touchless fan control system designed to interpret hand gestures for adjusting fan speed and power, offering a seamless, contact-free experience. This innovative project was developed as part of the Technology Challenge Competition 2 (TCC2) at Sri Lanka Technological Campus, where it ranked in the top 5 among 50+ teams.
+
+  The system combines image processing and gesture recognition through OpenCV and MediaPipe, using Python for real-time gesture detection and Arduino for fan control. The project enables users to manage fan settings with simple hand movements, enhancing both convenience and hygiene.
+
+  Technologies Used:
+
+  ● OpenCV for image processing
+  ● MediaPipe for hand gesture recognition
+  ● Python for gesture detection
+  ● Arduino for hardware control` 
   },
   {
     id: 4,
@@ -153,7 +240,17 @@ const STATIC_PROJECTS = [
     category: "Full Stack",
     tech: ["PHP", "SQL", "JavaScript"],
     desc: "High-performance reservation system with complex validation logic and seamless server-side processing.",
-    link: "https://github.com/tharukanandasiri/Hotel_reservation_system"
+    image: null,
+    link: "https://github.com/tharukanandasiri/Hotel_reservation_system",
+    details: `Hotel_reservation_system
+
+  Jan 2022 – Jan 2022
+
+  This Hotel Reservation System is an innovative digital platform meticulously designed to revolutionize and elevate the hotel room booking experience. With this system, guests will seamlessly navigate the process, making room reservations a breeze.
+
+  Front-end is developed with HTML and CSS, ensuring an intuitive user interface. JavaScript is employed for real-time data validation, providing users with a seamless and error-free experience. Behind the scenes, MySQL stands as the backbone database, while PHP acts as the vital conduit for user submissions and communication between the database and the system, guaranteeing data integrity and efficiency.
+
+  My grand vision for this project includes the implementation of user registration, a comprehensive room categorization system, real-time availability updates, secure payment processing, and instant confirmation notifications. I am looking forward to enhancing the user interface to make it not only visually appealing but also highly functional for both guests and the hotel staff.`
   }
 ];
 
@@ -290,30 +387,37 @@ const FluidCursor = () => {
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
       gl.texImage2D(gl.TEXTURE_2D, 0, internalFormat, 4, 4, 0, format, type, null);
+
       const fbo = gl.createFramebuffer();
       gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
       gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, texture, 0);
+
       const status = gl.checkFramebufferStatus(gl.FRAMEBUFFER);
       return status === gl.FRAMEBUFFER_COMPLETE;
     }
 
     function compileShader(type, source, keywords) {
       source = addKeywords(source, keywords);
+
       const shader = gl.createShader(type);
       gl.shaderSource(shader, source);
       gl.compileShader(shader);
+
       if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
         console.trace(gl.getShaderInfoLog(shader));
       }
+
       return shader;
     }
 
     function addKeywords(source, keywords) {
       if (!keywords) return source;
+
       let keywordsString = '';
-      keywords.forEach(keyword => {
+      keywords.forEach((keyword) => {
         keywordsString += '#define ' + keyword + '\n';
       });
+
       return keywordsString + source;
     }
 
@@ -1174,7 +1278,7 @@ const SparklesCore = ({
 
 // --- ANIMATION COMPONENTS ---
 
-const RevealOnScroll = ({ children, delay = 0, width = "100%" }) => {
+const RevealOnScroll = ({ children, delay = 0, width = "100%", className = "" }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, amount: 0.3 });
   
@@ -1185,6 +1289,7 @@ const RevealOnScroll = ({ children, delay = 0, width = "100%" }) => {
       animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y: 50, filter: "blur(5px)" }}
       transition={{ duration: 0.8, delay, type: "spring", bounce: 0.4 }}
       style={{ width }}
+      className={className}
     >
       {children}
     </motion.div>
@@ -1700,8 +1805,136 @@ const ExperienceList = () => {
   );
 };
 
+const ProjectModal = ({ project, onClose }) => {
+  const escHandler = (e) => { if (e.key === 'Escape') onClose(); };
+
+  useEffect(() => {
+    document.addEventListener('keydown', escHandler);
+    return () => document.removeEventListener('keydown', escHandler);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  if (!project) return null;
+
+  const detailsText = (project.details || project.desc || '').trim();
+  const sectionTransition = { type: 'spring', stiffness: 240, damping: 24, mass: 0.7 };
+
+  return (
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.24, ease: 'easeOut' }}
+        className="fixed inset-0 z-50 flex items-center justify-center p-3 md:p-6"
+      >
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3, ease: 'easeOut' }}
+          className="fixed inset-0 bg-slate-950/75 backdrop-blur-md"
+          onClick={onClose}
+        />
+
+        <motion.div
+          initial={{ y: 24, scale: 0.97, opacity: 0 }}
+          animate={{ y: 0, scale: 1, opacity: 1 }}
+          exit={{ y: 24, scale: 0.97, opacity: 0 }}
+          transition={{ type: 'spring', stiffness: 240, damping: 24, mass: 0.7 }}
+          role="dialog"
+          aria-modal="true"
+          className="relative w-full max-w-5xl max-h-[92vh] overflow-hidden rounded-3xl border border-white/10 bg-slate-900/95 shadow-2xl"
+        >
+          <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-blue-500/10 via-transparent to-pink-500/10" />
+
+          <div className="relative max-h-[92vh] overflow-y-auto">
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ ...sectionTransition, delay: 0.04 }}
+              className="sticky top-0 z-10 border-b border-white/10 bg-slate-900/85 backdrop-blur-md px-5 py-4 md:px-8 md:py-5"
+            >
+              <motion.button
+                onClick={onClose}
+                className="absolute right-4 top-4 inline-flex items-center justify-center rounded-full border border-slate-700 bg-slate-800/90 p-2 text-slate-300 transition-colors hover:border-slate-500 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+                aria-label="Close project details"
+                whileHover={{ scale: 1.05, y: -1 }}
+                whileTap={{ scale: 0.93 }}
+                whileFocus={{ scale: 1.04, y: -1 }}
+                transition={{ type: 'spring', stiffness: 500, damping: 28 }}
+              >
+                <X size={18} />
+              </motion.button>
+
+              <h3 className="pr-14 text-xl md:text-2xl font-bold tracking-tight text-white">{project.title}</h3>
+              <div className="mt-2 flex flex-wrap items-center gap-2 text-xs md:text-sm text-slate-300">
+                <span className="rounded-full border border-blue-400/30 bg-blue-500/10 px-3 py-1 text-blue-300">
+                  {project.category}
+                </span>
+                {project.tech?.map((item, index) => (
+                  <span key={index} className="rounded-full border border-slate-700 bg-slate-800/80 px-3 py-1 text-slate-300">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+
+            <div className="relative px-5 py-5 md:px-8 md:py-7">
+              {project.image && (
+                <motion.div
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 12 }}
+                  transition={{ ...sectionTransition, delay: 0.1 }}
+                  className="mb-6 overflow-hidden rounded-2xl border border-slate-800 bg-slate-950"
+                >
+                  <img src={project.image} alt={project.title} className="h-44 w-full object-cover md:h-56" />
+                </motion.div>
+              )}
+
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 12 }}
+                transition={{ ...sectionTransition, delay: 0.14 }}
+                className="mb-5 flex flex-wrap items-center gap-3"
+              >
+                {project.link && (
+                  <a
+                    onClick={(e) => e.stopPropagation()}
+                    href={project.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 rounded-xl border border-blue-400/35 bg-blue-500/10 px-4 py-2 text-sm font-medium text-blue-300 transition-colors hover:border-blue-300 hover:text-blue-200"
+                  >
+                    View repository <ExternalLink size={14} />
+                  </a>
+                )}
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 12 }}
+                transition={{ ...sectionTransition, delay: 0.18 }}
+                className="rounded-2xl border border-slate-800/90 bg-slate-950/55 p-4 md:p-5"
+              >
+                <p className="whitespace-pre-wrap text-sm md:text-base leading-7 text-slate-200">
+                  {detailsText}
+                </p>
+              </motion.div>
+            </div>
+          </div>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
+  );
+};
+
 const Projects = ({ dbProjects }) => {
   const displayProjects = dbProjects.length > 0 ? dbProjects : STATIC_PROJECTS;
+  const [selectedProject, setSelectedProject] = useState(null);
   
   return (
     <section className="py-32 bg-slate-950 relative" id="projects">
@@ -1718,18 +1951,31 @@ const Projects = ({ dbProjects }) => {
           </div>
         </RevealOnScroll>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
           {displayProjects.map((project, idx) => (
-            <RevealOnScroll key={project.id} delay={idx * 0.1}>
-              <div className="group relative">
+            <RevealOnScroll key={project.id} delay={idx * 0.1} className="h-full">
+              <div onClick={() => setSelectedProject(project)} className="group relative h-full cursor-pointer">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-500"></div>
-                <div className="relative h-full bg-slate-900 rounded-2xl p-8 border border-slate-800 hover:border-slate-700 transition-colors flex flex-col justify-between">
+                <div className="relative h-full bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 hover:border-slate-700 transition-colors flex flex-col justify-between">
+                  <div className="aspect-[16/9] w-full overflow-hidden border-b border-slate-800 bg-slate-950">
+                    {project.image ? (
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    ) : (
+                      <div className="h-full w-full bg-transparent" />
+                    )}
+                  </div>
+
+                  <div className="p-8 flex flex-col justify-between flex-1">
                   <div>
                     <div className="flex justify-between items-start mb-6">
                       <div className="px-3 py-1 bg-slate-800 rounded-full text-xs font-mono text-blue-400 border border-slate-700">
                         {project.category || 'Development'}
                       </div>
-                      <a href={project.link} className="text-slate-500 hover:text-white transition-colors">
+                      <a onClick={(e) => e.stopPropagation()} href={project.link} target="_blank" rel="noreferrer" className="text-slate-500 hover:text-white transition-colors">
                         <ExternalLink size={20} />
                       </a>
                     </div>
@@ -1749,11 +1995,13 @@ const Projects = ({ dbProjects }) => {
                       </span>
                     ))}
                   </div>
+                  </div>
                 </div>
               </div>
             </RevealOnScroll>
           ))}
         </div>
+        <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
       </div>
     </section>
   );
