@@ -16,7 +16,7 @@ import {
   Plus, Trash2, Lock, Sparkles, Layers, Command,
   ArrowRight, BookOpen, Calendar, FileText, MapPin, Phone, Send,
   Award, Heart, Medal, Menu, X,
-  Brain, Cloud, Database, Server, Wind, Flame, Box, Zap, FileCode, Monitor,
+  Smartphone, Cloud, Database, Server, Wind, Flame, Box, Zap, FileCode, Monitor,
   Twitter, Globe, Copy, MousePointer2, Download
 } from 'lucide-react';
 
@@ -60,9 +60,9 @@ const STATIC_PROFILE = {
   location: "Kandy, Sri Lanka",
   github: "https://github.com/tharukanandasiri",
   linkedin: "https://linkedin.com/in/tharuka-nandasiri",
-  about: "I am a motivated BSc. (Hons) Software Engineering undergraduate at SLTC. My passion lies in bridging the gap between complex backend logic and intuitive frontend experiences. I specialize in Full Stack Development and AI integration.",
+  about: "I am a motivated Full Stack Developer at SLTC. My passion lies in bridging the gap between complex backend logic and intuitive frontend experiences. I specialize in Full Stack Development and AI integration.",
   education: [
-    { title: "BSc. (Hons) Software Engineering", place: "Sri Lanka Technology Campus", year: "2022 - 2026", grade: "GPA: 3.00" },
+    { title: "BSc. (Hons) in Software Engineering", place: "Sri Lanka Technology Campus", year: "2022 - 2026", grade: "GPA: 3.00" },
     { title: "Diploma in Spoken English", place: "ICBT Kandy Campus", year: "2022" },
     { title: "G.C.E. Advanced Level", place: "St. Thomas' College, Matale", year: "2018 - 2020" },
   ],
@@ -95,7 +95,7 @@ const SKILLS = [
   { name: "TypeScript", icon: <FileCode size={28} />, color: "text-blue-500" },
   { name: "Node.js", icon: <Server size={28} />, color: "text-green-500" },
   { name: "Python", icon: <Terminal size={28} />, color: "text-yellow-400" },
-  { name: "AI/ML", icon: <Brain size={28} />, color: "text-purple-400" },
+  { name: "Flutter", icon: <Smartphone size={28} />, color: "text-emerald-400" },
   { name: "Tailwind", icon: <Wind size={28} />, color: "text-cyan-400" },
   { name: "Framer Motion", icon: <Zap size={28} />, color: "text-pink-500" },
   { name: "Firebase", icon: <Flame size={28} />, color: "text-orange-500" },
@@ -1555,7 +1555,7 @@ const Hero = () => {
           transition={{ delay: 0.3, duration: 0.8 }}
           className="text-xl md:text-2xl text-emerald-400 font-mono mb-8 relative z-20 text-center"
         >
-          Software Engineering Undergraduate
+          Full Stack Developer
         </motion.div>
         
         {/* Underline Effect */}
@@ -1685,7 +1685,7 @@ const About = () => {
                   />
                   <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black to-transparent">
                      <h3 className="text-white font-bold text-xl">Tharuka Nandasiri</h3>
-                     <p className="text-blue-400 text-sm">Undergraduate SE</p>
+                     <p className="text-blue-400 text-sm">25 years old</p>
                   </div>
                 </div>
               </div>
@@ -2066,9 +2066,10 @@ const VolunteeringList = () => {
   );
 };
 
-const Certifications = () => {
+const Certifications = ({ dbCertifications }) => {
   const [showAll, setShowAll] = useState(false);
-  const visibleCertifications = showAll ? STATIC_CERTIFICATIONS : STATIC_CERTIFICATIONS.slice(0, 6);
+  const displayCertifications = dbCertifications.length > 0 ? dbCertifications : STATIC_CERTIFICATIONS;
+  const visibleCertifications = showAll ? displayCertifications : displayCertifications.slice(0, 6);
 
   return (
     <section id="certifications" className="py-24 bg-slate-950 border-t border-slate-900">
@@ -2103,7 +2104,7 @@ const Certifications = () => {
           ))}
         </div>
 
-        {STATIC_CERTIFICATIONS.length > 6 && (
+        {displayCertifications.length > 6 && (
           <div className="mt-10 flex justify-center">
             <button
               type="button"
@@ -2288,13 +2289,29 @@ const AdminDashboard = ({ setView }) => {
   const [isAdding, setIsAdding] = useState(false);
   const [formData, setFormData] = useState({});
 
+  const handleProjectImageUpload = (file) => {
+    if (!file) {
+      setFormData((prev) => ({ ...prev, image: '' }));
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (typeof reader.result === 'string') {
+        setFormData((prev) => ({ ...prev, image: reader.result }));
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+
   useEffect(() => {
     fetchItems();
   }, [resourceType]);
 
   const fetchItems = async () => {
     if (!db) return;
-    const q = query(collection(db, resourceType), orderBy(resourceType === 'projects' ? 'createdAt' : 'date', 'desc'));
+    const orderField = resourceType === 'projects' || resourceType === 'certifications' ? 'createdAt' : 'date';
+    const q = query(collection(db, resourceType), orderBy(orderField, 'desc'));
     const querySnapshot = await getDocs(q);
     setItems(querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
   };
@@ -2303,9 +2320,25 @@ const AdminDashboard = ({ setView }) => {
     e.preventDefault();
     if (!db) return;
     
-    const payload = resourceType === 'projects' 
-      ? { ...formData, tech: formData.tech?.split(',') || [], createdAt: new Date().toISOString() }
-      : { ...formData, date: new Date().toISOString().split('T')[0] };
+    let payload;
+
+    if (resourceType === 'projects') {
+      payload = {
+        ...formData,
+        tech: formData.tech?.split(',').map((item) => item.trim()).filter(Boolean) || [],
+        image: formData.image || null,
+        createdAt: new Date().toISOString()
+      };
+    } else if (resourceType === 'certifications') {
+      payload = {
+        title: formData.title,
+        issuer: formData.issuer,
+        url: formData.url,
+        createdAt: new Date().toISOString()
+      };
+    } else {
+      payload = { ...formData, date: new Date().toISOString().split('T')[0] };
+    }
 
     await addDoc(collection(db, resourceType), payload);
     setFormData({});
@@ -2339,6 +2372,12 @@ const AdminDashboard = ({ setView }) => {
             className={`w-full text-left p-3 rounded-lg flex items-center gap-3 transition-colors ${resourceType === 'articles' ? 'bg-blue-600 text-white' : 'text-slate-400 hover:bg-slate-900'}`}
           >
             <FileText size={18} /> Articles
+          </button>
+          <button 
+            onClick={() => { setResourceType('certifications'); setIsAdding(false); }}
+            className={`w-full text-left p-3 rounded-lg flex items-center gap-3 transition-colors ${resourceType === 'certifications' ? 'bg-blue-600 text-white' : 'text-slate-400 hover:bg-slate-900'}`}
+          >
+            <Award size={18} /> Certifications
           </button>
         </div>
         <button onClick={() => { signOut(auth); setView('home'); }} className="mt-auto absolute bottom-6 flex items-center gap-2 text-red-400 hover:text-red-300">
@@ -2380,6 +2419,35 @@ const AdminDashboard = ({ setView }) => {
                       className="w-full bg-black border border-slate-700 rounded-lg p-3 text-white"
                       onChange={e => setFormData({...formData, tech: e.target.value})}
                     />
+                    <div className="space-y-3">
+                      <label className="block text-sm text-slate-400">Project Image</label>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        className="w-full bg-black border border-slate-700 rounded-lg p-3 text-slate-300 file:mr-4 file:rounded-md file:border-0 file:bg-slate-800 file:px-3 file:py-2 file:text-slate-200 hover:file:bg-slate-700"
+                        onChange={(e) => handleProjectImageUpload(e.target.files?.[0])}
+                      />
+                      {formData.image && (
+                        <div className="overflow-hidden rounded-lg border border-slate-800 bg-slate-950">
+                          <img src={formData.image} alt="Project preview" className="h-36 w-full object-cover" />
+                        </div>
+                      )}
+                    </div>
+                  </>
+                ) : resourceType === 'certifications' ? (
+                  <>
+                    <input
+                      placeholder="Issuer"
+                      className="w-full bg-black border border-slate-700 rounded-lg p-3 text-white"
+                      onChange={e => setFormData({...formData, issuer: e.target.value})}
+                      required
+                    />
+                    <input
+                      placeholder="Certificate URL"
+                      className="w-full bg-black border border-slate-700 rounded-lg p-3 text-white"
+                      onChange={e => setFormData({...formData, url: e.target.value})}
+                      required
+                    />
                   </>
                 ) : (
                   <input 
@@ -2390,18 +2458,22 @@ const AdminDashboard = ({ setView }) => {
                   />
                 )}
 
-                <textarea 
-                  placeholder={resourceType === 'projects' ? "Description" : "Content / Summary"}
-                  className="w-full bg-black border border-slate-700 rounded-lg p-3 text-white h-32"
-                  onChange={e => setFormData({...formData, [resourceType === 'projects' ? 'desc' : 'summary']: e.target.value})}
-                  required
-                />
+                {resourceType !== 'certifications' && (
+                  <textarea 
+                    placeholder={resourceType === 'projects' ? "Description" : "Content / Summary"}
+                    className="w-full bg-black border border-slate-700 rounded-lg p-3 text-white h-32"
+                    onChange={e => setFormData({...formData, [resourceType === 'projects' ? 'desc' : 'summary']: e.target.value})}
+                    required
+                  />
+                )}
                 
-                <input 
-                  placeholder="Link URL"
-                  className="w-full bg-black border border-slate-700 rounded-lg p-3 text-white"
-                  onChange={e => setFormData({...formData, link: e.target.value})}
-                />
+                {resourceType !== 'certifications' && (
+                  <input 
+                    placeholder="Link URL"
+                    className="w-full bg-black border border-slate-700 rounded-lg p-3 text-white"
+                    onChange={e => setFormData({...formData, link: e.target.value})}
+                  />
+                )}
 
                 <button className="bg-blue-600 w-full py-3 rounded-lg font-bold">Publish</button>
              </form>
@@ -2414,9 +2486,11 @@ const AdminDashboard = ({ setView }) => {
                   <h3 className="font-bold text-lg mb-1">{item.title}</h3>
                   <div className="text-sm text-slate-400">
                     {/* Safe rendering to prevent Object error */}
-                    {resourceType === 'projects' 
-                      ? (typeof item.category === 'string' ? item.category : '') 
-                      : (typeof item.date === 'string' ? item.date : '')}
+                    {resourceType === 'projects'
+                      ? (typeof item.category === 'string' ? item.category : '')
+                      : resourceType === 'certifications'
+                        ? (typeof item.issuer === 'string' ? item.issuer : '')
+                        : (typeof item.date === 'string' ? item.date : '')}
                   </div>
                 </div>
                 <button onClick={() => handleDelete(item.id)} className="p-2 text-slate-500 hover:text-red-400 transition-colors">
@@ -2472,6 +2546,7 @@ export default function App() {
   const [user, setUser] = useState(null);
   const [dbProjects, setDbProjects] = useState([]);
   const [dbArticles, setDbArticles] = useState([]);
+  const [dbCertifications, setDbCertifications] = useState([]);
   
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -2499,6 +2574,10 @@ export default function App() {
         const aQ = query(collection(db, "articles"), orderBy("date", "desc"));
         const aSnap = await getDocs(aQ);
         setDbArticles(aSnap.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+
+        const cQ = query(collection(db, "certifications"), orderBy("createdAt", "desc"));
+        const cSnap = await getDocs(cQ);
+        setDbCertifications(cSnap.docs.map(doc => ({ id: doc.id, ...doc.data() })));
       } catch (e) {}
     };
     fetchData();
@@ -2524,7 +2603,7 @@ export default function App() {
             <About />
             <Projects dbProjects={dbProjects} />
             <Volunteering />
-            <Certifications />
+            <Certifications dbCertifications={dbCertifications} />
             <Articles dbArticles={dbArticles} />
             <Contact />
 
