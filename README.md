@@ -28,3 +28,7 @@ A sleek, highly customizable, and interactive personal portfolio template built 
   - **Firestore:** Real-time, NoSQL database for Projects and Articles data.
   - **Authentication:** User login for the Admin Panel.
 - **Formspree:** Third-party service for handling contact form submissions.
+
+## 🔗 Live Portfolio
+
+You can view the live site at: https://tharuka-nandasiri-portfolio.vercel.app/
