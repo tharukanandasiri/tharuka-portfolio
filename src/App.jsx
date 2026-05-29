@@ -263,17 +263,10 @@ My contributions & results: As Team Lead / Prompt Engineer / QA / Project Manage
 const STATIC_ARTICLES = [
   {
     id: 1,
-    title: "Understanding React Server Components",
-    summary: "A deep dive into how RSCs are changing the landscape of frontend development and improving performance.",
-    date: "2024-03-15",
-    link: "#"
-  },
-  {
-    id: 2,
-    title: "The Future of AI in Software Testing",
-    summary: "Exploring how LLMs and automated agents are revolutionizing QA processes and regression testing.",
-    date: "2024-02-10",
-    link: "#"
+    title: "Beyond the Widget Tree: How GenUI is Redefining Mobile Architecture",
+    summary: "If you are building static Flutter apps in 2026, you are missing the biggest shift in mobile architecture: Generative UI (GenUI). Modern AI agents now assemble dynamic, interactive interfaces on the fly using your pre-built widgets.",
+    date: "2026-05-20",
+    link: "https://www.linkedin.com/pulse/beyond-widget-tree-how-genui-redefining-mobile-tharuka-nandasiri-maaac/"
   }
 ];
 
@@ -2148,23 +2141,26 @@ const Articles = ({ dbArticles }) => {
         <div className="grid md:grid-cols-2 gap-8">
           {displayArticles.map((article, idx) => (
             <RevealOnScroll key={article.id} delay={idx * 0.1}>
-              <a href={article.link} className="block group">
-                <article className="p-6 rounded-xl bg-slate-900/50 border border-slate-800 hover:border-blue-500/50 transition-all hover:bg-slate-900">
-                  <div className="flex items-center gap-2 text-slate-500 text-sm mb-3">
-                    <Calendar size={14} />
-                    <span>{article.date}</span>
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
-                    {article.title}
-                  </h3>
-                  <p className="text-slate-400 line-clamp-3">
-                    {article.summary}
-                  </p>
-                  <div className="mt-4 flex items-center gap-2 text-sm text-blue-400 font-medium opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">
-                    Read Article <ArrowRight size={14} />
-                  </div>
-                </article>
-              </a>
+              <article className="p-6 rounded-xl bg-slate-900/50 border border-slate-800 hover:border-blue-500/50 transition-all hover:bg-slate-900 h-full flex flex-col">
+                <div className="flex items-center gap-2 text-slate-500 text-sm mb-3">
+                  <Calendar size={14} />
+                  <span>{article.date}</span>
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">
+                  {article.title}
+                </h3>
+                <p className="text-slate-400 line-clamp-4">
+                  {article.summary}
+                </p>
+                <a
+                  href={article.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-6 inline-flex items-center gap-2 text-sm text-blue-400 font-medium hover:text-blue-300 transition-colors"
+                >
+                  Read Full Article <ArrowRight size={14} />
+                </a>
+              </article>
             </RevealOnScroll>
           ))}
         </div>
