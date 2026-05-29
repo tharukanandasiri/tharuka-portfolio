@@ -116,12 +116,18 @@ const STATIC_VOLUNTEERING = [
 ];
 
 const STATIC_CERTIFICATIONS = [
-  { title: "Fundamentals of Quality Assurance", issuer: "Alison" },
-  { title: "How to create a Jira SCRUM project", issuer: "Coursera" },
-  { title: "C for Beginners", issuer: "Great Learning" },
-  { title: "Web Design for Beginners", issuer: "University of Moratuwa" },
-  { title: "Bridging Program for IT Disciplines", issuer: "SLTC" },
-  { title: "Python Programming", issuer: "SITEC Education" }
+  { title: "Fundamentals of Quality Assurance", issuer: "Alison", url: "https://alison.com/certification/check/8b7e751099" },
+  { title: "Codemania v4.0", issuer: "IEEE Computer Society of SLTC", url: "https://www.mrview.zedeid.com/verify/did:moon:mainnet:0x1839c9396f87487eb20633c1fab000cb515546af/1209" },
+  { title: "How to create a Jira SCRUM project", issuer: "Coursera", url: "https://www.coursera.org/account/accomplishments/verify/MBUUQM4WJEZ4" },
+  { title: "Web Design for Beginners", issuer: "University of Moratuwa", url: "https://drive.google.com/file/d/1v-JhQ0hQhIr_0Rs5OmYiVW6nhfTmXJ1P/view" },
+  { title: "Bridging Program for IT Disciplines", issuer: "Sri Lanka Technology Campus", url: "https://drive.google.com/file/d/1-xNS72wA-ZU6dpxPJEMvt4WcrC7OVETZ/view" },
+  { title: "C for Beginners", issuer: "Great Learning", url: "https://drive.google.com/file/d/1q9yCNkCFH94nEvCZBzLPTwWTmK3fBozO/view" },
+  { title: "2023 Certificate of IEEE Membership", issuer: "IEEE", url: "https://drive.google.com/file/d/1hgfnUT9zFhLq0p95h4l0W-5Wvbf66GgP/view" },
+  { title: "CodeMania v3.0 – Algorithmic Coding Competition", issuer: "IEEE Computer Society of SLTC", url: "https://drive.google.com/file/d/1nNdr2E-zsXVAu2uIujotAZJL7acG_irw/view?usp=sharing" },
+  { title: "Learn Basics of Adobe Photoshop CC 2022 for Beginners", issuer: "Udemy", url: "https://www.udemy.com/certificate/UC-c20bf473-c9cc-4dbb-84a8-99602c479ed0/" },
+  { title: "IP Addressing and Subnetting - Zero to Hero", issuer: "Udemy", url: "https://www.udemy.com/certificate/UC-f2185f0b-6ece-4a4f-9dbd-2a9e6445d6c6/" },
+  { title: "Python Programming", issuer: "SITEC Education", url: "https://sitec.lk/" },
+  { title: "Web Development", issuer: "SITEC Education", url: "https://sitec.lk/" }
 ];
 
 const STATIC_PROJECTS = [
@@ -2068,6 +2074,9 @@ const VolunteeringList = () => {
 };
 
 const Certifications = () => {
+  const [showAll, setShowAll] = useState(false);
+  const visibleCertifications = showAll ? STATIC_CERTIFICATIONS : STATIC_CERTIFICATIONS.slice(0, 6);
+
   return (
     <section id="certifications" className="py-24 bg-slate-950 border-t border-slate-900">
       <div className="max-w-6xl mx-auto px-6">
@@ -2079,21 +2088,40 @@ const Certifications = () => {
         </RevealOnScroll>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {STATIC_CERTIFICATIONS.map((cert, idx) => (
+          {visibleCertifications.map((cert, idx) => (
             <RevealOnScroll key={idx} delay={idx * 0.05}>
               <div className="h-full bg-slate-900 p-6 rounded-xl border border-slate-800 flex flex-col justify-between hover:translate-y-[-5px] transition-transform duration-300 hover:shadow-xl hover:shadow-yellow-500/5">
                 <div>
                    <Medal size={24} className="text-slate-600 mb-4" />
                    <h3 className="font-semibold text-slate-200 mb-2">{cert.title}</h3>
                 </div>
-                <p className="text-sm text-slate-500 mt-4 border-t border-slate-800 pt-4 flex justify-between items-center">
-                  {cert.issuer}
-                  <ExternalLink size={12} />
-                </p>
+                <div className="mt-4 border-t border-slate-800 pt-4 flex items-center justify-between gap-3">
+                  <p className="text-sm text-slate-500">{cert.issuer}</p>
+                  <button
+                    type="button"
+                    onClick={() => window.open(cert.url, '_blank', 'noopener,noreferrer')}
+                    className="inline-flex items-center gap-1 rounded-full border border-slate-700 bg-slate-950 px-3 py-1 text-xs text-slate-300 transition-colors hover:border-blue-500 hover:text-white"
+                  >
+                    Open <ExternalLink size={12} />
+                  </button>
+                </div>
               </div>
             </RevealOnScroll>
           ))}
         </div>
+
+        {STATIC_CERTIFICATIONS.length > 6 && (
+          <div className="mt-10 flex justify-center">
+            <button
+              type="button"
+              onClick={() => setShowAll((value) => !value)}
+              className="inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-900 px-5 py-3 text-sm font-medium text-slate-200 transition-colors hover:border-blue-500 hover:text-white"
+            >
+              {showAll ? 'Show less' : 'See all'}
+              <ArrowRight size={16} className={`transition-transform ${showAll ? 'rotate-90' : 'rotate-0'}`} />
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
